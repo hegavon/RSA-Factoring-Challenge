@@ -1,0 +1,36 @@
+#!/usr/bin/python3
+"""
+Factorize numbers in a file into a product of two prime numbers
+"""
+import sys
+
+
+def factorize():
+    """
+    Factorize a given set of numbers into two prime numbers (format n = p*q)
+    """
+    try:
+        filename = sys.argv[1]
+        with open(filename) as file:
+            for line in file:
+                number_to_factorize = int(line)
+                
+                if number_to_factorize % 2 == 0:
+                    print("{}={}*{}".format(number_to_factorize, number_to_factorize // 2, 2))
+                    continue
+                
+                divisor = 3
+                while divisor < number_to_factorize // 2:
+                    if number_to_factorize % divisor == 0:
+                        print("{}={}*{}".format(number_to_factorize, number_to_factorize // divisor, divisor))
+                        break
+                    divisor += 2
+                
+                if divisor == (number_to_factorize // 2) + 1:
+                    print("{}={}*{}".format(number_to_factorize, number_to_factorize, 1))
+    except IndexError:
+        pass
+
+
+factorize()
+

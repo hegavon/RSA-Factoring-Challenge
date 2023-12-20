@@ -1,34 +1,24 @@
 #include <stdio.h>
 
-/**
- * trial_division - Finds the smallest divisor, if any, of a given number `n`
- * @n: The number to find the smallest divisor for
- *
- * Return: The smallest divisor if found, 0 if n is prime
- */
-int trial_division(long int n)
+int main()
 {
-	long int f;
+	long long int number = 239809320265259;
+	long int divisor = 2;
+	long int second_factor;
 
-	if (n % 2 == 0)
+	while (number % divisor)
 	{
-		printf("%lu=%lu*%i\n", n, n / 2, 2);
-		return (0);
-	}
-
-	f = 3;
-	while (f * f <= n)
-	{
-		if (n % f == 0)
+		if (divisor <= number)
 		{
-			printf("%lu=%lu*%lu\n", n, n / f, f);
-			return (0);
+			divisor++;
 		}
 		else
 		{
-			f += 2;
+			return (-1);
 		}
 	}
-	printf("%lu=%lu*%i\n", n, n, 1);
+
+	second_factor = number / divisor;
+	printf("%lld = %ld * %ld\n", number, second_factor, divisor);
 	return (0);
 }
