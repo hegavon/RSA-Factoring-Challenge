@@ -1,5 +1,32 @@
 #!/usr/bin/python3
-from factors_functions import *
-if __name__ == '__main__':
+"""Factorize given set of numbers in a file into product of two small numbers"""
+from sys import argv
 
-    print(unix_time(print_factors))
+
+def factorize(number_to_factorize):
+    """Find two small numbers that multiply to give a given number"""
+    divisor = 2
+
+    if number_to_factorize < 2:
+        return
+
+    while number_to_factorize % divisor:
+        divisor += 1
+
+    print("{:.0f}={:.0f}*{:.0f}".format(number_to_factorize, number_to_factorize / divisor, divisor))
+
+if len(argv) != 2:
+    exit()
+
+try:
+    with open(argv[1]) as file:
+        line = file.readline()
+
+        while line != "":
+            number_to_factorize = int(line.strip())
+            factorize(number_to_factorize)
+            line = file.readline()
+except FileNotFoundError:
+    print(f"File not found: {argv[1]}")
+except Exception as e:
+    print(f"An error occurred: {e}")
